@@ -25,6 +25,8 @@
             >
             <EditText
                 android:layout_alignParentLeft="true"
+                android:maxLines="1"
+                android:inputType="textCapCharacters"
                 android:text=""
                 android:hint="DX Callsign"
                 android:layout_weight="1"
@@ -42,6 +44,8 @@
             android:layout_marginTop="15dp">
             <EditText
                 android:layout_alignParentLeft="true"
+                android:maxLines="1"
+                android:inputType="text"
                 android:text=""
                 android:hint="Frequency"
                 android:layout_weight="1"
@@ -58,6 +62,66 @@
                 android:onClick="importFrequency">
             </ImageButton>
         </LinearLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:id="@+id/rst_sent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RST SENT"
+                    />
+                <TextView
+                    android:id="@+id/rst_rcvd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RST RCVD"
+                    />
+            </LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp">
+                <NumberPicker
+                    android:id="@+id/r_sent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+
+                <NumberPicker
+                    android:id="@+id/s_sent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+                <NumberPicker
+                    android:id="@+id/r_rcvd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+
+                <NumberPicker
+                    android:id="@+id/s_rcvd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

@@ -34,6 +34,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,6 +83,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         frequency =(EditText)findViewById(R.id.frequency);
+        NumberPicker r_sent = (NumberPicker) findViewById(R.id.r_sent);
+        NumberPicker r_rcvd = (NumberPicker) findViewById(R.id.r_rcvd);
+        NumberPicker s_sent = (NumberPicker) findViewById(R.id.s_sent);
+        NumberPicker s_rcvd = (NumberPicker) findViewById(R.id.s_rcvd);
+
+        r_sent.setMinValue(1);
+        r_sent.setMaxValue(5);
+        r_sent.setValue(5);
+
+        r_rcvd.setMinValue(1);
+        r_rcvd.setMaxValue(5);
+        r_rcvd.setValue(5);
+
+        s_sent.setMinValue(1);
+        s_sent.setMaxValue(9);
+        s_sent.setValue(9);
+
+        s_rcvd.setMinValue(1);
+        s_rcvd.setMaxValue(9);
+        s_rcvd.setValue(9);
     }
 
     public void importFrequency(View v)  {
