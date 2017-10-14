@@ -4,6 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorMain"
     tools:context="org.a4z1kd.mobilog.MainActivity">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+            <EditText
+                android:layout_alignParentLeft="true"
+                android:text=""
+                android:hint="DX Callsign"
+                android:layout_weight="1"
+                android:id="@+id/callsign"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+            <EditText
+                android:layout_alignParentLeft="true"
+                android:text=""
+                android:hint="Frequency"
+                android:layout_weight="1"
+                android:id="@+id/frequency"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+            </EditText>
+            <ImageButton android:text="Skip"
+                android:id="@+id/importFrequencyBtn"
+                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:background="@drawable/import_icon"
+                android:scaleType="fitCenter"
+                android:onClick="importFrequency">
+            </ImageButton>
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/InnerRelativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp">
+            <Button
+                android:text="Clear"
+                android:id="@+id/Button2"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Button>
+            <Button
+                android:text="Save"
+                android:id="@+id/Button"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/success"
+                android:textColor="@color/colorMain">
+            </Button>
+
+        </RelativeLayout>
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

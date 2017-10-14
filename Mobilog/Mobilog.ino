@@ -38,7 +38,7 @@ void setup() {
   server.begin();
 
   // Print the IP address
-  //Serial.print(WiFi.localIP());
+  Serial.print(WiFi.localIP());
 }
 
 void loop() {
@@ -70,9 +70,11 @@ void loop() {
   if (request.indexOf("/cmd=fa") != -1)  {
     // Return the response
     client.println("HTTP/1.1 200 OK");
-    client.println("Content-Type: text/json");
+    client.println("Content-Type: text/plain");
     client.println(""); //  do not forget this one
-    client.println("{data:{freq:'" + Frequency + "',client:'ft891'}}");
+    Frequency.replace("FA","");
+    Frequency.replace(";","");
+    client.print(Frequency);
     delay(1);
   }
   else
@@ -80,7 +82,7 @@ void loop() {
     client.println("HTTP/1.1 200 OK");
     client.println("Content-Type: text/json");
     client.println(""); //  do not forget this one
-    client.println("error");
+    client.print("error");
   }
 }
 
