@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include <ESP8266WiFi.h>
 #include <SoftwareSerial.h>
-#define MAX_SIZE 27*47
+#define MAX_SIZE 8*50
 
 //const char* ssid = "4Z1KD-S";
 const char* ssid = "Gil";
@@ -10,7 +10,8 @@ const char* password = "";
 unsigned long previousMillis = 0; // required for delay of CAT command
 const long interval = 1000; // delay interval (milliseconds)
 
-SoftwareSerial radioSerial(D2, -1, true, MAX_SIZE);
+SoftwareSerial radioSerial(D7, D8, false, MAX_SIZE);
+//SoftwareSerial radioSerial(D2, D3);
 
 boolean stringComplete = false; // A flag that indicate a command has arrived through the serial port
 String inputString = ""; //The raw string of the command
@@ -20,10 +21,10 @@ WiFiServer server(80); //The local web server
 
 void setup() {
   //start radio serial
-  //radioSerial.begin(9600);
+  radioSerial.begin(9600);
 
   //start monitor serial
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial) {}
 
   // Connect to WiFi network
@@ -38,14 +39,16 @@ void setup() {
   server.begin();
 
   // Print the IP address
-  Serial.print(WiFi.localIP());
+  //Serial.print(WiFi.localIP());
 }
 
 void loop() {
+  Serial.println("FA7140000;")
   SendCommandToRadio("FA;");
   CheckForData();
   if (stringComplete)
   {
+    Serial.println(inputString); 
     Frequency = inputString;
     inputString = ""; //reset the input string
     stringComplete = false; //reset the complete flag
@@ -91,27 +94,27 @@ void SendCommandToRadio(String command)
   unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
-    //radioSerial.print(command);
-    Serial.print(command);
+    radioSerial.print(command);
+    //Serial.print(command);
     delay(250);
   }
 }
 
 void CheckForData() {
-  //  while (radioSerial.available()) {
-  //    char inChar = (char)radioSerial.read();
-  //    inputString += inChar;
-  //    if (inChar == ';') {
-  //      inputString.trim(); //trim the string
-  //      stringComplete = true;
-  //    }
-  //  }
-  while (Serial.available()) {
-    char inChar = (char)Serial.read();
-    inputString += inChar;
-    if (inChar == ';') {
-      inputString.trim(); //trim the string
-      stringComplete = true;
+    while (radioSerial.available()) {
+      char inChar = (char)radioSerial.read();
+      inputString += inChar;
+      if (inChar == ';') {
+        inputString.trim(); //trim the string
+        stringComplete = true;
+      }
     }
-  }
+//  while (Serial.available()) {
+//    char inChar = (char)Serial.read();
+//    inputString += inChar;
+//    if (inChar == ';') {
+//      inputString.trim(); //trim the string
+//      stringComplete = true;
+//    }
+//  }
 }
